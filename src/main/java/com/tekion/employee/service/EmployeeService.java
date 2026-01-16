@@ -18,4 +18,10 @@ public interface EmployeeService {
     EmployeeEntity getById(String id);
 
     EmployeeEntity update(String id, EmployeeEntity entity);
+
+    List<EmployeeEntity> findByCreatedAtRange(Instant startTime, Instant endTime);
+
+    List<EmployeeEntity> findLatestEmployees(int limit);
+
+    boolean incrementSalary(String id, Double amount);
 }

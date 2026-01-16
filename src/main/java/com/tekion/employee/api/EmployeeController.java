@@ -46,4 +46,19 @@ public class EmployeeController {
     public EmployeeEntity update(@PathVariable String id, @RequestBody EmployeeEntity entity) {
         return service.update(id, entity);
     }
+
+    @GetMapping("/range")
+    public List<EmployeeEntity> findByCreatedAtRange(@RequestParam Instant startTime, @RequestParam Instant endTime) {
+        return service.findByCreatedAtRange(startTime, endTime);
+    }
+
+    @GetMapping("/latest")
+    public List<EmployeeEntity> findLatestEmployees(@RequestParam int limit) {
+        return service.findLatestEmployees(limit);
+    }
+
+    @PatchMapping("/increment-salary/{id}")
+    public boolean incrementSalary(@PathVariable String id, @RequestParam Double amount) {
+        return service.incrementSalary(id, amount);
+    }
 }

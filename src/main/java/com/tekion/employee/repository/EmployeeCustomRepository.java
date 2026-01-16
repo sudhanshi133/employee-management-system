@@ -8,4 +8,10 @@ import java.util.List;
 public interface EmployeeCustomRepository {
 
     List<EmployeeEntity> fetchNextPage(Instant cursor, int limit);
+
+    List<EmployeeEntity> findByCreatedAtBetweenSorted(Instant startTime, Instant endTime);
+
+    List<EmployeeEntity> findLatestEmployees(int limit);
+
+    boolean incrementSalary(String id, Double amount);
 }
