@@ -31,4 +31,19 @@ public class EmployeeController {
     public boolean delete(@PathVariable String id) {
         return service.delete(id);
     }
+
+    @GetMapping("/getAll")
+    public List<EmployeeEntity> getAll(){
+        return service.getAll();
+    }
+
+    @GetMapping("/get/{id}")
+    public EmployeeEntity getById(@PathVariable String id){
+        return service.getById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public EmployeeEntity update(@PathVariable String id, @RequestBody EmployeeEntity entity) {
+        return service.update(id, entity);
+    }
 }

@@ -33,4 +33,40 @@ public class EmployeeServiceImpl implements EmployeeService {
         repository.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<EmployeeEntity> getAll(){
+        return repository.findAll();
+    }
+
+    @Override
+    public EmployeeEntity getById(String id){
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public EmployeeEntity update(String id, EmployeeEntity entity) {
+        EmployeeEntity existingEntity = repository.findById(id).orElse(null);
+        if (existingEntity == null) {
+            return null;
+        }
+        if (entity.getName() != null) {
+            existingEntity.setName(entity.getName());
+        }
+        if (entity.getEmail() != null) {
+            existingEntity.setEmail(entity.getEmail());
+        }
+        if (entity.getCity() != null) {
+            existingEntity.setCity(entity.getCity());
+        }
+        if (entity.getDesignation() != null) {
+            existingEntity.setDesignation(entity.getDesignation());
+        }
+        if (entity.getSalary() != null) {
+            existingEntity.setSalary(entity.getSalary());
+        }
+
+        existingEntity.setModifiedAt(Instant.now());
+        return repository.save(existingEntity);
+    }
 }

@@ -12,4 +12,10 @@ public interface EmployeeService {
     List<EmployeeEntity> fetchEntities(Instant cursor, int limit);
 
     boolean delete(String id);
+
+    List<EmployeeEntity> getAll();
+
+    EmployeeEntity getById(String id);
+
+    EmployeeEntity update(String id, EmployeeEntity entity);
 }
