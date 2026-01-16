@@ -84,4 +84,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public boolean incrementSalary(String id, Double amount) {
         return repository.incrementSalary(id, amount);
     }
+
+    @Override
+    public  List<EmployeeEntity> findByCityAndDesignation(String city, String designation) {
+        return repository.findByCityAndDesignation(city,designation);
+    }
 }
