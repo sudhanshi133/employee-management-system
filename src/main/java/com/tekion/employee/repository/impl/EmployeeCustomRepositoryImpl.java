@@ -58,7 +58,7 @@ public class EmployeeCustomRepositoryImpl implements EmployeeCustomRepository {
     }
 
     @Override
-    public List<EmployeeEntity> findByCityAndDesignation(String city, String designation) {
+    public List<EmployeeEntity> findByEmailAndDesignation(String city, String designation) {
         Query query = new Query();
         query.addCriteria(Criteria.where("city").is(city).and("designation").is(designation));
         return mongoTemplate.find(query, EmployeeEntity.class);

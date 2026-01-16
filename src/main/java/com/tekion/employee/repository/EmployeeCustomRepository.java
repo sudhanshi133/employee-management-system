@@ -15,5 +15,5 @@ public interface EmployeeCustomRepository {
 
     boolean incrementSalary(String id, Double amount);
 
-    List<EmployeeEntity> findByCityAndDesignation(String city, String designation);
+    List<EmployeeEntity> findByEmailAndDesignation(String email, String designation);
 }

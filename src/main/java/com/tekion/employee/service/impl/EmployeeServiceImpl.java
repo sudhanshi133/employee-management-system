@@ -86,7 +86,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public  List<EmployeeEntity> findByCityAndDesignation(String city, String designation) {
-        return repository.findByCityAndDesignation(city,designation);
+    public  List<EmployeeEntity> findByEmailAndDesignation(String email, String designation) {
+        return repository.findByEmailAndDesignation(email,designation);
     }
 }

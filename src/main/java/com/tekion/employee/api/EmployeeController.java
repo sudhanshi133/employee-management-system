@@ -63,7 +63,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/search")
-    public List<EmployeeEntity> findByCityAndDesignation(@RequestParam String city, @RequestParam String designation) {
-        return service.findByCityAndDesignation(city, designation);
+    public List<EmployeeEntity> findByEmailAndDesignation(@RequestParam String email, @RequestParam String designation) {
+        return service.findByEmailAndDesignation(email, designation);
     }
 }
