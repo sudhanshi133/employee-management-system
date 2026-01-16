@@ -1,34 +1,36 @@
 package com.tekion.employee.service.impl;
 
-import com.tekion.employee.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.tekion.employee.models.EmployeeEntity;
 import com.tekion.employee.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tekion.employee.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
 
 @Service
-public interface EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl implements EmployeeService {
 
-    @Autowired
-    private EmployeeRepository repository;
+    private final EmployeeRepository repository;
+
+    public EmployeeServiceImpl(EmployeeRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public EmployeeEntity create(EmployeeEntity entity) {
-        entity.setCreatedTime(Instant.now());
+        entity.setCreatedAt(Instant.now());
         return repository.save(entity);
     }
 
     @Override
-    public List<EmployeeEntity> getNextPage(Instant cursor, int limit) {
+    public List<EmployeeEntity> fetchEntities(Instant cursor, int limit) {
         return repository.fetchNextPage(cursor, limit);
     }
 
     @Override
     public boolean delete(String id) {
-        return repository.deleteById(id);
+        repository.deleteById(id);
+        return true;
     }
 }

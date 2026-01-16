@@ -2,7 +2,6 @@ package com.tekion.employee.api;
 
 import com.tekion.employee.models.EmployeeEntity;
 import com.tekion.employee.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
@@ -12,8 +11,11 @@ import java.util.List;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeService service;
+    private final EmployeeService service;
+
+    public EmployeeController(EmployeeService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public EmployeeEntity create(@RequestBody EmployeeEntity entity) {
@@ -21,9 +23,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/page")
-    public List<EmployeeEntity> page(
-            @RequestParam(required = false) Instant cursor,
-            @RequestParam int limit) {
+    public List<EmployeeEntity> page(@RequestParam(required = false) Instant cursor, @RequestParam int limit) {
         return service.fetchEntities(cursor, limit);
     }
 
