@@ -61,4 +61,9 @@ public class EmployeeController {
     public boolean incrementSalary(@PathVariable String id, @RequestParam Double amount) {
         return service.incrementSalary(id, amount);
     }
+
+    @GetMapping("/search")
+    public List<EmployeeEntity> findByCityAndDesignation(@RequestParam String city, @RequestParam String designation) {
+        return service.findByCityAndDesignation(city, designation);
+    }
 }

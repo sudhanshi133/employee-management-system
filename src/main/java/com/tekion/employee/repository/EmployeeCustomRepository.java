@@ -14,4 +14,6 @@ public interface EmployeeCustomRepository {
     List<EmployeeEntity> findLatestEmployees(int limit);
 
     boolean incrementSalary(String id, Double amount);
+
+    List<EmployeeEntity> findByCityAndDesignation(String city, String designation);
 }

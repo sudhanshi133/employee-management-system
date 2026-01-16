@@ -24,4 +24,6 @@ public interface EmployeeService {
     List<EmployeeEntity> findLatestEmployees(int limit);
 
     boolean incrementSalary(String id, Double amount);
+
+    List<EmployeeEntity> findByCityAndDesignation(String city, String designation);
 }

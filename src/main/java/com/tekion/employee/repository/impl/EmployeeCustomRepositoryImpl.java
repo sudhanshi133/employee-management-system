@@ -56,5 +56,12 @@ public class EmployeeCustomRepositoryImpl implements EmployeeCustomRepository {
         UpdateResult result = mongoTemplate.updateFirst(query, update, EmployeeEntity.class);
         return result.getModifiedCount() > 0;
     }
+
+    @Override
+    public List<EmployeeEntity> findByCityAndDesignation(String city, String designation) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("city").is(city).and("designation").is(designation));
+        return mongoTemplate.find(query, EmployeeEntity.class);
+    }
 }
 
