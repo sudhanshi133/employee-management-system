@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.List;
 
-@Service
+
 public class EmployeeService {
+
+    EmployeeEntity create(EmployeeEntity entity);
+
+    List<EmployeeEntity> getNextPage(Instant cursor, int limit);
+
+    boolean delete(String id);
 }

@@ -10,20 +10,24 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.List;
 
+@Service
 public interface EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepository repository;
 
+    @Override
     public EmployeeEntity create(EmployeeEntity entity) {
         entity.setCreatedTime(Instant.now());
         return repository.save(entity);
     }
 
+    @Override
     public List<EmployeeEntity> getNextPage(Instant cursor, int limit) {
         return repository.fetchNextPage(cursor, limit);
     }
 
+    @Override
     public boolean delete(String id) {
         return repository.deleteById(id);
     }
