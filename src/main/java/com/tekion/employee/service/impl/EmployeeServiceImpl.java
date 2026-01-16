@@ -69,4 +69,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         existingEntity.setModifiedAt(Instant.now());
         return repository.save(existingEntity);
     }
+
+    @Override
+    public List<EmployeeEntity> findByCreatedAtRange(Instant startTime, Instant endTime) {
+        return repository.findByCreatedAtBetweenSorted(startTime, endTime);
+    }
+
+    @Override
+    public List<EmployeeEntity> findLatestEmployees(int limit) {
+        return repository.findLatestEmployees(limit);
+    }
+
+    @Override
+    public boolean incrementSalary(String id, Double amount) {
+        return repository.incrementSalary(id, amount);
+    }
 }
