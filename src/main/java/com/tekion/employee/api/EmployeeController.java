@@ -1,4 +1,34 @@
 package com.tekion.employee.api;
 
+import com.tekion.employee.models.EmployeeEntity;
+import com.tekion.employee.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.Instant;
+import java.util.List;
+
+@RestController
+@RequestMapping("/employee")
 public class EmployeeController {
+
+    @Autowired
+    private EmployeeService service;
+
+    @PostMapping
+    public EmployeeEntity create(@RequestBody EmployeeEntity entity) {
+        return service.create(entity);
+    }
+
+    @GetMapping("/page")
+    public List<EmployeeEntity> page(
+            @RequestParam(required = false) Instant cursor,
+            @RequestParam int limit) {
+        return service.fetchEntities(cursor, limit);
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable String id) {
+        return service.delete(id);
+    }
 }
